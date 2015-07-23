@@ -11,28 +11,62 @@
     tools:context=".MainActivity" >
 
     <EditText
+        android:id="@+id/txtDestinatario"
         android:drawableLeft="@mipmap/ic_user"
         android:hint="@string/txtDestinatario"
         android:textColorHint="#ff9000"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <EditText
-        android:id="@+id/txtMensaje"
-        android:hint="@string/txtMensaje"
-        android:textColorHint="#ff9000"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_weight="1"
-        android:gravity="start"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/btnSaveMessage"
-        android:text="@string/btnGuardarMensaje"
-        android:background="@drawable/button_style"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/txtMensaje"
+            android:hint="@string/txtMensaje"
+            android:textColorHint="#ff9000"
+            android:layout_weight="1"
+            android:gravity="top"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/btnNewMessage"
+                android:src="@mipmap/icon_new"
+                android:background="@drawable/button_style"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/btnSaveMessage"
+                android:src="@mipmap/icon_save"
+                android:background="@drawable/button_style"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:id="@+id/btnListMessages"
+                android:src="@mipmap/icon_list"
+                android:background="@drawable/button_style"
+                android:layout_marginBottom="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 
     <Button
         android:id="@+id/btnSend"

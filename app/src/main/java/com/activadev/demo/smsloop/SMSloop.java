@@ -14,9 +14,10 @@ import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 import android.database.sqlite.SQLiteDatabase;
-
+import android.content.ContentValues;
 
 public class SMSloop extends Activity  {
     //String txtNumero = "84442809";    //Cristian
@@ -27,8 +28,14 @@ public class SMSloop extends Activity  {
     //String[] arrMensajes = {"Hola mermeladita, como estas", "Buxa, estoy aburrido!", "Adivina...", "Hice una aplicacion para el celu que envia y envia mensajes", "xD", "Que loco no?", "Lo que hace el ocio jajaja", "Lo programe, y te enviara una serie de mensajes automaticamente", "Y te seguiran llegando mensajes", "uno tras otro", "y asi y asi...", "por el siglo de los siglos", "Amen! xD", "Ya oh! muchos mensajes por hoy", "Adios", "ese fue mi aporte xD", "Cuidate, un beso", "Despues hablamos"};
     String[] arrMensajes = {"Holix"};
 
-    private Button btnGuardarMensaje;
-    private Button btnSend;
+    private EditText txtDestinatario;
+    private EditText txtMensaje;
+    private ImageButton btnNuevoMensaje;
+    private ImageButton btnGuardarMensaje;
+    private ImageButton btnListarMensajes;
+    private Button btnEnviarSMS;
+
+    private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +44,25 @@ public class SMSloop extends Activity  {
         setContentView(R.layout.activity_smsloop);
 
         SMSLoopSQLite conn = new SMSLoopSQLite(this, "SMSLoopDB", null, 1);
-        SQLiteDatabase db = conn.getWritableDatabase();
+        db = conn.getWritableDatabase();
 
-        btnGuardarMensaje = (Button)findViewById(R.id.btnSaveMessage);
-        btnSend = (Button)findViewById(R.id.btnSend);
+        txtDestinatario = (EditText)findViewById(R.id.txtDestinatario);
+        txtMensaje = (EditText)findViewById(R.id.txtMensaje);
+        btnGuardarMensaje = (ImageButton)findViewById(R.id.btnSaveMessage);
+        btnEnviarSMS = (Button)findViewById(R.id.btnSend);
 
-        btnSend.setOnClickListener(new View.OnClickListener() {
+        btnGuardarMensaje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mensaje = txtMensaje.getText().toString();
+                ContentValues nuevoRegistro = new ContentValues();
+                nuevoRegistro.put("mensaje", mensaje);
+                db.insert("mensajes", null, nuevoRegistro);
+                Toast.makeText(SMSloop.this, "Guardado...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnEnviarSMS.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 PendingIntent sentIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent("SMS_SENT"), 0);
                 registerReceiver(new BroadcastReceiver() {

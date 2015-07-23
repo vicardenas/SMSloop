@@ -7,6 +7,8 @@
 
     <string name="txtDestinatario">Destinatario</string>
     <string name="txtMensaje">Escribir mensaje aqui...</string>
-    <string name="btnGuardarMensaje">Guardar Mensaje</string>
+    <string name="btnNuevo">Nuevo</string>
+    <string name="btnGuardar">Guardar</string>
+    <string name="btnListar">Listar</string>
     <string name="btnEnviar">Enviar</string>
 </resources>

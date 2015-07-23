@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SMSLoopSQLite extends SQLiteOpenHelper {
 
-    String sqlCreate = "CREATE TABLE mensajes (id INTEGER, mensaje TEXT)";
+    String sqlCreate = "CREATE TABLE mensajes (mensaje TEXT)";
 
     public SMSLoopSQLite(Context contexto, String nombre, CursorFactory factory, int version) {
         super(contexto, nombre, factory, version);
