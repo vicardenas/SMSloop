@@ -5,7 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
-    <string name="str_para">Para:</string>
-    <string name="str_mensaje">Escribir mensaje:</string>
-    <string name="str_enviar">Enviar</string>
+    <string name="txtDestinatario">Destinatario</string>
+    <string name="txtMensaje">Escribir mensaje aqui...</string>
+    <string name="btnGuardarMensaje">Guardar Mensaje</string>
+    <string name="btnEnviar">Enviar</string>
 </resources>

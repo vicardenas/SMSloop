@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.database.sqlite.SQLiteDatabase;
 
 
 public class SMSloop extends Activity  {
@@ -24,8 +25,10 @@ public class SMSloop extends Activity  {
     String txtNumero = "";
     //String[] arrMensajes = {"Buena cotito", "Que cuentas?", "Lo que hace el ocio! xD", "Buta estoy aburrido", "Esto se llama 'malgastando los mensajes'", "aun me quedan como 1994 mensajes", "Puedo seguir...", "A que hora te vas?"};
     //String[] arrMensajes = {"Hola mermeladita, como estas", "Buxa, estoy aburrido!", "Adivina...", "Hice una aplicacion para el celu que envia y envia mensajes", "xD", "Que loco no?", "Lo que hace el ocio jajaja", "Lo programe, y te enviara una serie de mensajes automaticamente", "Y te seguiran llegando mensajes", "uno tras otro", "y asi y asi...", "por el siglo de los siglos", "Amen! xD", "Ya oh! muchos mensajes por hoy", "Adios", "ese fue mi aporte xD", "Cuidate, un beso", "Despues hablamos"};
-    //String[] arrMensajes = {"H", "O", "O", "O", "O", "L", "A", "A", "C", "O", "M", "P", "A", "Ñ", "E", "R", "I", "T", "A", "A", "!", "!", "Y", "O", "P", "U", "E", "D", "O", "S", "E", "R", "M", "U", "C", "H", "O", "M", "A", "S", "M", "O", "L", "E", "S", "T", "O", "S", "O", "!", "xD"};
-    Button btnSend;
+    String[] arrMensajes = {"Holix"};
+
+    private Button btnGuardarMensaje;
+    private Button btnSend;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +36,15 @@ public class SMSloop extends Activity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_smsloop);
 
+        SMSLoopSQLite conn = new SMSLoopSQLite(this, "SMSLoopDB", null, 1);
+        SQLiteDatabase db = conn.getWritableDatabase();
+
+        btnGuardarMensaje = (Button)findViewById(R.id.btnSaveMessage);
         btnSend = (Button)findViewById(R.id.btnSend);
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-
                 PendingIntent sentIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent("SMS_SENT"), 0);
-
                 registerReceiver(new BroadcastReceiver() {
 
                     @Override
